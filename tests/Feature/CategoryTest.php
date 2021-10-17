@@ -10,12 +10,12 @@ use Tests\TestCase;
 class CategoryTest extends TestCase
 {
     use WithFaker;
+    // use RefreshDatabase;
 
     /** @test */
     public function create_category()
     {
         $this->withoutExceptionHandling();
-        // $category = Category::factory()->create();
         $response = $this->call('post', '/categories', ['body' => $this->faker->name()]);
         $response->assertOk();
     }
