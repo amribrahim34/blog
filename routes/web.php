@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/posts', PostController::class);
-// Route::post('/posts', [PostController::class, 'store']);
+Route::resource('/categories', CategoryController::class);
