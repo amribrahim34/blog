@@ -19,7 +19,7 @@ class KeywordTest extends TestCase
     public function create_keyword()
     {
         $this->withoutExceptionHandling();
-        $response = $this->call('post', '/keywords', ['body' => $this->faker->name()]);
+        $response = $this->call('post', '/admin/keywords', ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -29,7 +29,7 @@ class KeywordTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $keyword = Keyword::factory()->create();
-        $response = $this->call('get', '/keywords');
+        $response = $this->call('get', '/admin/keywords');
         $response->assertOk();
     }
 
@@ -38,7 +38,7 @@ class KeywordTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $keyword = Keyword::factory()->create();
-        $response = $this->call('put', '/keywords/' . $keyword->id, ['body' => $this->faker->name()]);
+        $response = $this->call('put', '/admin/keywords/' . $keyword->id, ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -47,7 +47,7 @@ class KeywordTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $keyword = Keyword::factory()->create();
-        $response = $this->call('delete', '/keywords/' . $keyword->id);
+        $response = $this->call('delete', '/admin/keywords/' . $keyword->id);
         $response->assertOk();
     }
 }

@@ -19,14 +19,14 @@ class CommentTest extends TestCase
     public function get_all_comments()
     {
         $comment = comment::factory()->create();
-        $response = $this->call('get', '/comments');
+        $response = $this->call('get', '/admin/comments');
         $response->assertOk();
     }
 
     /** @test */
     public function create_comment()
     {
-        $response = $this->call('post', '/comments', $this->comment_array());
+        $response = $this->call('post', '/admin/comments', $this->comment_array());
         $response->assertOk();
     }
 
@@ -34,7 +34,7 @@ class CommentTest extends TestCase
     public function get_comment()
     {
         $comment = comment::factory()->create();
-        $response = $this->call('get', '/comments/' . $comment->id);
+        $response = $this->call('get', '/admin/comments/' . $comment->id);
         $response->assertOk();
     }
 
@@ -42,7 +42,7 @@ class CommentTest extends TestCase
     public function edit_comment()
     {
         $comment = comment::factory()->create();
-        $response = $this->call('put', '/comments/' . $comment->id, $this->comment_array());
+        $response = $this->call('put', '/admin/comments/' . $comment->id, $this->comment_array());
         $response->assertOk();
     }
 
@@ -50,7 +50,7 @@ class CommentTest extends TestCase
     public function delete_comment()
     {
         $comment = comment::factory()->create();
-        $response = $this->call('delete', '/comments/' . $comment->id);
+        $response = $this->call('delete', '/admin/comments/' . $comment->id);
         $response->assertOk();
     }
 

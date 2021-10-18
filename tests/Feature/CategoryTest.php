@@ -16,7 +16,7 @@ class CategoryTest extends TestCase
     public function create_category()
     {
         $this->withoutExceptionHandling();
-        $response = $this->call('post', '/categories', ['body' => $this->faker->name()]);
+        $response = $this->call('post', '/admin/categories', ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -26,7 +26,7 @@ class CategoryTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $category = Category::factory()->create();
-        $response = $this->call('get', '/categories');
+        $response = $this->call('get', '/admin/categories');
         $response->assertOk();
     }
 
@@ -35,7 +35,7 @@ class CategoryTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $category = Category::factory()->create();
-        $response = $this->call('put', '/categories/' . $category->id, ['body' => $this->faker->name()]);
+        $response = $this->call('put', '/admin/categories/' . $category->id, ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -44,7 +44,7 @@ class CategoryTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $category = Category::factory()->create();
-        $response = $this->call('delete', '/categories/' . $category->id);
+        $response = $this->call('delete', '/admin/categories/' . $category->id);
         $response->assertOk();
     }
 }

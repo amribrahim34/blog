@@ -18,31 +18,35 @@ class PostTest extends TestCase
     /** @test */
     public function create_post()
     {
-        $response = $this->call('post', '/posts', $this->post_array());
+        $user = User::factory()->create(['is_admin' => 1]);
+        $response = $this->actingAs($user)->call('post', '/admin/posts', $this->post_array());
         $response->assertOk();
     }
 
     /** @test */
     public function get_post()
     {
+        $user = User::factory()->create(['is_admin' => 1]);
         $post = Post::factory()->create();
-        $response = $this->call('get', '/posts/' . $post->id);
+        $response = $this->actingAs($user)->call('get', '/admin/posts/' . $post->id);
         $response->assertOk();
     }
 
     /** @test */
     public function edit_post()
     {
+        $user = User::factory()->create(['is_admin' => 1]);
         $post = Post::factory()->create();
-        $response = $this->call('put', '/posts/' . $post->id, $this->post_array());
+        $response = $this->actingAs($user)->call('put', '/admin/posts/' . $post->id, $this->post_array());
         $response->assertOk();
     }
 
     /** @test */
     public function delete_post()
     {
+        $user = User::factory()->create(['is_admin' => 1]);
         $post = Post::factory()->create();
-        $response = $this->call('delete', '/posts/' . $post->id);
+        $response = $this->actingAs($user)->call('delete', '/admin/posts/' . $post->id);
         $response->assertOk();
     }
 
