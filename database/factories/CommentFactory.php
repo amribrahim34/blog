@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
-use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Post::class;
+    protected $model = Comment::class;
 
     /**
      * Define the model's default state.
@@ -24,10 +24,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
             'user_id' => User::factory()->create()->id,
-            'category_id' => Category::factory()->create()->id,
+            'post_id' => Post::factory()->create()->id,
         ];
     }
 }

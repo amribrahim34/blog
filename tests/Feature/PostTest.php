@@ -12,7 +12,7 @@ use Tests\TestCase;
 class PostTest extends TestCase
 {
     use WithFaker;
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
 
     /** @test */

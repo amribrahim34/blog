@@ -10,7 +10,7 @@ use Tests\TestCase;
 class CategoryTest extends TestCase
 {
     use WithFaker;
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     /** @test */
     public function create_category()
