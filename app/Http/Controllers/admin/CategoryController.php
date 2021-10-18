@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommentStoreRequest;
-use App\Http\Requests\CommentUpdateRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 
-class CommentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::get();
+        $categories = Category::get();
     }
 
     /**
@@ -36,19 +37,19 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentStoreRequest $request)
+    public function store(CategoryStoreRequest $request)
     {
         $validated = $request->validated();
-        Comment::create($validated);
+        Category::create($validated);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Category $category)
     {
         //
     }
@@ -56,10 +57,10 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Category $category)
     {
         //
     }
@@ -68,23 +69,23 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CommentUpdateRequest $request, Comment $comment)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         $validated = $request->validated();
-        $comment->update($validated);
+        $category->create($validated);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Category $category)
     {
-        $comment->delete();
+        $category->delete();
     }
 }

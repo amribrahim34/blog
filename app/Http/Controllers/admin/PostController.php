@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Keyword;
+use App\Models\Post;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\KeywordStoreRequest;
-use App\Http\Requests\KeywordUpdateRequest;
 
-
-class KeywordController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class KeywordController extends Controller
      */
     public function index()
     {
-        $keywords = Keyword::get();
+        //
     }
 
     /**
@@ -36,19 +36,20 @@ class KeywordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KeywordStoreRequest $request)
+    public function store(PostStoreRequest $request)
     {
         $validated = $request->validated();
-        $keyword = Keyword::create($validated);
+        // dd($validated);
+        Post::create($validated);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Keyword  $keyword
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Keyword $keyword)
+    public function show(Post $post)
     {
         //
     }
@@ -56,10 +57,10 @@ class KeywordController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Keyword  $keyword
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Keyword $keyword)
+    public function edit(Post $post)
     {
         //
     }
@@ -68,23 +69,23 @@ class KeywordController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Keyword  $keyword
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(KeywordUpdateRequest $request, Keyword $keyword)
+    public function update(PostUpdateRequest $request, Post $post)
     {
         $validated = $request->validated();
-        $keyword->update($validated);
+        $post->update($validated);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Keyword  $keyword
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Keyword $keyword)
+    public function destroy(Post $post)
     {
-        $keyword->delete();
+        $post->delete();
     }
 }
