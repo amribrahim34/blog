@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Category;
+use App\Models\User;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
@@ -15,8 +16,9 @@ class CategoryTest extends TestCase
     /** @test */
     public function create_category()
     {
+        $user = User::factory()->create(['is_admin' => 1]);
         $this->withoutExceptionHandling();
-        $response = $this->call('post', '/admin/categories', ['body' => $this->faker->name()]);
+        $response = $this->actingAs($user)->call('post', '/admin/categories', ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -25,8 +27,9 @@ class CategoryTest extends TestCase
     public function get_category()
     {
         $this->withoutExceptionHandling();
+        $user = User::factory()->create(['is_admin' => 1]);
         $category = Category::factory()->create();
-        $response = $this->call('get', '/admin/categories');
+        $response = $this->actingAs($user)->call('get', '/admin/categories');
         $response->assertOk();
     }
 
@@ -34,8 +37,9 @@ class CategoryTest extends TestCase
     public function update_category()
     {
         $this->withoutExceptionHandling();
+        $user = User::factory()->create(['is_admin' => 1]);
         $category = Category::factory()->create();
-        $response = $this->call('put', '/admin/categories/' . $category->id, ['body' => $this->faker->name()]);
+        $response = $this->actingAs($user)->call('put', '/admin/categories/' . $category->id, ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -43,8 +47,9 @@ class CategoryTest extends TestCase
     public function delete_category()
     {
         $this->withoutExceptionHandling();
+        $user = User::factory()->create(['is_admin' => 1]);
         $category = Category::factory()->create();
-        $response = $this->call('delete', '/admin/categories/' . $category->id);
+        $response = $this->actingAs($user)->call('delete', '/admin/categories/' . $category->id);
         $response->assertOk();
     }
 }

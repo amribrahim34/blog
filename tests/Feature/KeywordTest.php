@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Keyword;
+use App\Models\User;
 
 
 class KeywordTest extends TestCase
@@ -19,7 +20,8 @@ class KeywordTest extends TestCase
     public function create_keyword()
     {
         $this->withoutExceptionHandling();
-        $response = $this->call('post', '/admin/keywords', ['body' => $this->faker->name()]);
+        $user = User::factory()->create(['is_admin' => 1]);
+        $response = $this->actingAs($user)->call('post', '/admin/keywords', ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -28,8 +30,9 @@ class KeywordTest extends TestCase
     public function get_keyword()
     {
         $this->withoutExceptionHandling();
+        $user = User::factory()->create(['is_admin' => 1]);
         $keyword = Keyword::factory()->create();
-        $response = $this->call('get', '/admin/keywords');
+        $response = $this->actingAs($user)->call('get', '/admin/keywords');
         $response->assertOk();
     }
 
@@ -37,8 +40,9 @@ class KeywordTest extends TestCase
     public function update_keyword()
     {
         $this->withoutExceptionHandling();
+        $user = User::factory()->create(['is_admin' => 1]);
         $keyword = Keyword::factory()->create();
-        $response = $this->call('put', '/admin/keywords/' . $keyword->id, ['body' => $this->faker->name()]);
+        $response = $this->actingAs($user)->call('put', '/admin/keywords/' . $keyword->id, ['body' => $this->faker->name()]);
         $response->assertOk();
     }
 
@@ -46,8 +50,9 @@ class KeywordTest extends TestCase
     public function delete_keyword()
     {
         $this->withoutExceptionHandling();
+        $user = User::factory()->create(['is_admin' => 1]);
         $keyword = Keyword::factory()->create();
-        $response = $this->call('delete', '/admin/keywords/' . $keyword->id);
+        $response = $this->actingAs($user)->call('delete', '/admin/keywords/' . $keyword->id);
         $response->assertOk();
     }
 }
