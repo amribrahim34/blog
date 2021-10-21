@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Keyword;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
@@ -17,7 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::get();
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -27,7 +30,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        $keywords = Keyword::get();
+        return view('admin.posts.create', [
+            'categories' => $categories,
+            'keywords' => $keywords,
+        ]);
     }
 
     /**
@@ -39,7 +47,6 @@ class PostController extends Controller
     public function store(PostStoreRequest $request)
     {
         $validated = $request->validated();
-        // dd($validated);
         Post::create($validated);
     }
 
@@ -51,7 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', ['post' => $post]);
     }
 
     /**
@@ -62,7 +69,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::get();
+        $keywords = Keyword::get();
+        return view('admin.posts.edit', [
+            'categories' => $categories,
+            'keywords' => $keywords,
+            'post' => $post,
+        ]);
     }
 
     /**
