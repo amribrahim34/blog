@@ -10,7 +10,7 @@
 
   <!-- ========== Css Files ========== -->
   <link href="{{asset('assets/admin/css/root.css')}}" rel="stylesheet">
-
+ @yield('css')
 
   </head>
   <body>

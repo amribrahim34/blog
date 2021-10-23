@@ -23,6 +23,7 @@
                             <th>title</th>
                             <th>category</th>
                             <th>keywords</th>
+                            <th>user</th>
                             <th>status</th>
                             {{-- <th class="text-right"> {{__('app.tables.control')}}</th> --}}
                         </tr>
@@ -41,7 +42,15 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                <td>{{ $post->status }}</td>
+                                <td>{{ $post->user->name }}</td>
+                                <td>
+                                    @if ($post->active == true )
+                                        <label for="" class="badge bg-success text-white">active</label>
+                                    @else
+                                        <span for="" class="badge bg-danger text-white">inactive</span>
+                                            
+                                    @endif
+                                </td>
                                 {{-- <td class="text-right">
                                     <div class="dropdown">
                                         <a href="#" data-toggle="dropdown"

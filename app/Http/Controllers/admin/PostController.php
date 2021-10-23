@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -47,7 +49,11 @@ class PostController extends Controller
     public function store(PostStoreRequest $request)
     {
         $validated = $request->validated();
-        Post::create($validated);
+        // dd($validated);
+        $validated += ['user_id' => Auth::user()->id];
+        $post = Post::create($validated);
+        $post->keywords()->sync($validated['keywords']);
+        return redirect(route('admin.posts.index'));
     }
 
     /**
