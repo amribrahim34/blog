@@ -54,7 +54,9 @@ jQuery Library
 <!-- ================================================
 Bootstrap Core JavaScript File
 ================================================ -->
-<script src="{{asset('assets/admin/js/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/admin/js/bootstrap/bootstrap.bundle.js')}}"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>     --}}
+
 
 <!-- ================================================
 Plugin.js - Some Specific JS codes for Plugin Settings
@@ -135,7 +137,7 @@ Rickshaw
 <!-- ================================================
 Data Tables
 ================================================ -->
-<script src="{{asset('assets/admin/js/datatables/datatables.min.js')}}"></script>
+{{-- <script src="{{asset('assets/admin/js/datatables/datatables.min.js')}}"></script> --}}
 
 <!-- ================================================
 Sweet Alert

@@ -20,7 +20,7 @@ class PostTest extends TestCase
     {
         $user = User::factory()->create(['is_admin' => 1]);
         $response = $this->actingAs($user)->call('post', '/admin/posts', $this->post_array());
-        $response->assertOk();
+        $response->assertStatus(302);
     }
 
     /** @test */
@@ -38,7 +38,7 @@ class PostTest extends TestCase
         $user = User::factory()->create(['is_admin' => 1]);
         $post = Post::factory()->create();
         $response = $this->actingAs($user)->call('put', '/admin/posts/' . $post->id, $this->post_array());
-        $response->assertOk();
+        $response->assertStatus(302);
     }
 
     /** @test */
@@ -47,7 +47,7 @@ class PostTest extends TestCase
         $user = User::factory()->create(['is_admin' => 1]);
         $post = Post::factory()->create();
         $response = $this->actingAs($user)->call('delete', '/admin/posts/' . $post->id);
-        $response->assertOk();
+        $response->assertStatus(302);
     }
 
     private function post_array()

@@ -25,6 +25,7 @@
                             <th>keywords</th>
                             <th>user</th>
                             <th>status</th>
+                            <th>manage</th>
                             {{-- <th class="text-right"> {{__('app.tables.control')}}</th> --}}
                         </tr>
                     </thead>
@@ -51,25 +52,28 @@
                                             
                                     @endif
                                 </td>
-                                {{-- <td class="text-right">
+                                <td class="text-right">
                                     <div class="dropdown">
-                                        <a href="#" data-toggle="dropdown"
-                                        class="btn btn-floating"
-                                        aria-haspopup="true" aria-expanded="false">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="ti-more-alt"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{route('categories.edit',$category->id)}}" class="dropdown-item">{{__('app.tables.btn.edit')}}</a>
-                                            <form method="POST" action="{{route('categories.destroy',$category->id)}}"  >
-                                                @csrf
-                                                <input type="hidden" name="_method" value="DELETE" >
-                                                <button class="dropdown-item text-danger" >
-                                                    {{__('app.tables.btn.delete')}}
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td> --}}
+                                      
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <li>
+                                                <a href="{{route('admin.posts.edit',$post->id)}}" class="dropdown-item">edit</a>
+                                            </li>
+                                            <li>
+                                                    <form method="POST" action="{{route('admin.posts.destroy',$post->id)}}"  >
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE" >
+                                                        <button class="dropdown-item text-danger" >
+                                                            delete
+                                                        </button>
+                                                    </form>
+                                            </li>
+                                        </ul>
+                                      </div>    
+                                </td>
                             </tr>
                             @endforeach
                         @endif
