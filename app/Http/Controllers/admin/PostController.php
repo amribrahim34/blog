@@ -53,6 +53,7 @@ class PostController extends Controller
         $validated += ['user_id' => Auth::user()->id];
         $post = Post::create($validated);
         $post->keywords()->sync($validated['keywords']);
+        $request->session()->flash('message', __('posts.massages.created_successfully'));
         return redirect(route('admin.posts.index'));
     }
 
@@ -95,6 +96,7 @@ class PostController extends Controller
     {
         $validated = $request->validated();
         $post->update($validated);
+        return redirect(route('admin.posts.index'));
     }
 
     /**
@@ -106,5 +108,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+        return redirect(route('admin.posts.index'));
     }
 }
