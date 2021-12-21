@@ -19,6 +19,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::get();
+        return view('admin.categories.index', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -28,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -41,6 +44,8 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         Category::create($validated);
+        $request->session()->flash('message', __('categories.massages.created_successfully'));
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -62,7 +67,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -76,6 +83,8 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $category->create($validated);
+        $request->session()->flash('message', __('categories.massages.updated_successfully'));
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -84,8 +93,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, Request $request)
     {
         $category->delete();
+        $request->session()->flash('message', __('categories.massages.deleted_successfully'));
+        return redirect(route('admin.categories.index'));
     }
 }

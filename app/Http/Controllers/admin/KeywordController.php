@@ -19,6 +19,9 @@ class KeywordController extends Controller
     public function index()
     {
         $keywords = Keyword::get();
+        return view('admin.keywords.index', [
+            'keywords' => $keywords,
+        ]);
     }
 
     /**
@@ -28,7 +31,7 @@ class KeywordController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.keywords.create');
     }
 
     /**
@@ -41,6 +44,8 @@ class KeywordController extends Controller
     {
         $validated = $request->validated();
         $keyword = Keyword::create($validated);
+        $request->session()->flash('message', __('keywords.massages.created_successfully'));
+        return redirect(route('admin.keywords.index'));
     }
 
     /**
@@ -62,7 +67,9 @@ class KeywordController extends Controller
      */
     public function edit(Keyword $keyword)
     {
-        //
+        return view('admin.keywords.edit', [
+            'keyword' => $keyword,
+        ]);
     }
 
     /**
@@ -76,6 +83,8 @@ class KeywordController extends Controller
     {
         $validated = $request->validated();
         $keyword->update($validated);
+        $request->session()->flash('message', __('keywords.massages.updated_successfully'));
+        return redirect(route('admin.keywords.index'));
     }
 
     /**

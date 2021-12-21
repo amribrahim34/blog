@@ -24,6 +24,20 @@
                 </span>posts
             </a>
         </li>
+        <li>
+            <a href="{{route('admin.keywords.index')}}" class="text-uppercase">
+                <span class="icon color8">
+                    <i class="fa fa-bar-chart"></i>
+                </span>keywords
+            </a>
+        </li>
+        <li>
+            <a href="{{route('admin.categories.index')}}" class="text-uppercase">
+                <span class="icon color8">
+                    <i class="fa fa-bar-chart"></i>
+                </span>categories
+            </a>
+        </li>
     </ul>
 </div>
     <!-- END SIDEBAR -->
