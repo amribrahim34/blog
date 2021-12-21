@@ -19,50 +19,9 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CommentStoreRequest $request)
-    {
-        $validated = $request->validated();
-        Comment::create($validated);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
+        return view('admin.comments.index', [
+            'comments' => $comments,
+        ]);
     }
 
     /**
@@ -72,10 +31,22 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(CommentUpdateRequest $request, Comment $comment)
+    public function activate(Comment $comment, Request $request)
     {
-        $validated = $request->validated();
-        $comment->update($validated);
+        $comment->update([
+            "active" => 1
+        ]);
+        $request->session()->flash('message', __('comments.massages.activated_successfully'));
+        return redirect(route('admin.comments.index'));
+    }
+
+    public function deactivate(Comment $comment, Request $request)
+    {
+        $comment->update([
+            "active" => 0
+        ]);
+        $request->session()->flash('message', __('comments.massages.deactivated_successfully'));
+        return redirect(route('admin.comments.index'));
     }
 
     /**

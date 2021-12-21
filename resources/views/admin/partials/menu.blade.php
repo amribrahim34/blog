@@ -38,6 +38,13 @@
                 </span>categories
             </a>
         </li>
+        <li>
+            <a href="{{route('admin.comments.index')}}" class="text-uppercase">
+                <span class="icon color8">
+                    <i class="fa fa-bar-chart"></i>
+                </span>comments
+            </a>
+        </li>
     </ul>
 </div>
     <!-- END SIDEBAR -->

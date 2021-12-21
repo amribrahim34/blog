@@ -10,7 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Comment extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $guarded = [];
+    protected $fillable = [
+        'user_id',
+        'post_id',
+        'active',
+        'body',
+    ];
 
     public function user()
     {
