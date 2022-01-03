@@ -8,7 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-import { createApp } from "vue";
+// import { createApp } from "vue";
+import { createApp, h } from 'vue';
+
 import router from "./Components/router";
 import PostIndex from "./Components/Posts/PostIndex";
 
@@ -41,4 +43,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 // const app = new Vue({
 //     el: '#app',
+// });
+
 // });

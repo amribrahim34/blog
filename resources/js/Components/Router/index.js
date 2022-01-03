@@ -1,7 +1,11 @@
 // const { createRouter } = require("vue-router");
 
 import {createRouter , createWebHistory, creteWebHistory} from "vue-router";
-import {PostIndex } from "../Posts/PostIndex";
+// import {PostIndex } from "../Posts/PostIndex.vue";
+var PostIndex = import('../Posts/PostIndex.vue')
+// console.log(PostIndex);
+// import PostIndex from "./Components/Posts/PostIndex";
+
 
 const routes = [
     {
